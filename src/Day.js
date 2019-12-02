@@ -4,6 +4,7 @@ import * as actions from "./store/actions";
 import ReminderForm from "./ReminderForm";
 import Reminder from "./Reminder";
 import _sortBy from "lodash/sortBy";
+import axios from "axios"
 
 const defaultColor = "#000";
 
@@ -125,7 +126,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createReminder: payload => dispatch(actions.createReminder(payload)),
+    createReminder: payload => {
+      console.log('came to createReminder!!!!!!!!', payload)
+      axios.post('api/createTask', payload)
+      .then(function (response) {
+        dispatch(actions.createReminder(payload));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      },
     updateReminder: payload => dispatch(actions.updateReminder(payload)),
     deleteReminder: (date, id) => dispatch(actions.deleteReminder(date, id))
   };

@@ -1,11 +1,14 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-// Do not touch this file
+const bodyParser = require("body-parser");
+const moment = require("moment");
 const { Task } = require('./db/index.js');
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.static(path.join(__dirname, '..', 'dist')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -23,6 +26,20 @@ app.get('/api/months/:month?', (req, res, next) => {
     var check = moment(moment(), 'YYYY/MM/DD');
     month = check.format('M');
   };
+});
+
+app.post('/api/createTask', (req, res, next) => {
+  console.log('req.body is: ', req.body)
+  const taskUserSent = req.body
+  const check = moment(taskUserSent.date, 'YYYY/MM/DD');
+  const month = check.format('M');
+  Task.create({
+    taskDate: taskUserSent.date,
+    taskDescription: taskUserSent.description,
+    taskTime: taskUserSent.time,
+    taskMonth: month,
+    taskStatus: 'new'
+  })
 });
 
 
