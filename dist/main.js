@@ -78207,18 +78207,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import "./styles/main.css";
 
 
- // import thunk from "redux-thunk";
 
- // function component() {
-//     const element = document.createElement('div');
-//     // Lodash, currently included via a script, is required for this line to work
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//     return element;
-//   }
-//   document.body.appendChild(component());
 
 const store = Object(redux__WEBPACK_IMPORTED_MODULE_5__["createStore"])(_store_reducers__WEBPACK_IMPORTED_MODULE_6__["default"]);
 const appShell = //<Provider> connects a component to the redux store, no need to subscribe() to the store explicitly
