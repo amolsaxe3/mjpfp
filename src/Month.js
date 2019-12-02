@@ -99,6 +99,7 @@ export default class Month extends React.Component {
   }
 
   render() {
+    console.log('inside Month render!!!')
     const weekdays = moment.weekdays();
     const days = this.buildDays();
 
