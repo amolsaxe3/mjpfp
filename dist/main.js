@@ -70742,7 +70742,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79670,7 +79670,7 @@ const mapDispatchToProps = dispatch => {
     createReminder: payload => {
       console.log('came to createReminder!!!!!!!!', payload);
       axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('api/createTask', payload).then(function (response) {
-        dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_2__["createReminder"](payload));
+        dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_2__["createReminder"](response));
       }).catch(function (error) {
         console.log(error);
       });
@@ -79800,6 +79800,8 @@ class Month extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   componentDidMount() {
+    const reminders = axios__WEBPACK_IMPORTED_MODULE_7___default.a.get('api/months/12');
+    console.log('reminder: ', reminders);
     this.createState(this.props);
   }
 
@@ -79874,7 +79876,31 @@ class Month extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, days));
   }
 
-}
+} // const mapStateToProps = state => {
+//   return {
+//     reminders: state
+//   };
+// };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchAllReminders: payload => {
+//       console.log('came to fetchAllReminders!!!!!!!!', payload)
+//       axios.get('api/months/12', payload)
+//       .then(function (reminders) {
+//         dispatch(actions.createReminder(reminders));
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//       },
+//     updateReminder: payload => dispatch(actions.updateReminder(payload)),
+//     deleteReminder: (date, id) => dispatch(actions.deleteReminder(date, id))
+//   };
+// };
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Month);
 
 /***/ }),
 

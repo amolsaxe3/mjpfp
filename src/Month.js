@@ -22,6 +22,8 @@ export default class Month extends React.Component {
   }
 
   componentDidMount() {
+    const reminders = axios.get('api/months/12')
+    console.log('reminder: ', reminders)
     this.createState(this.props);
   }
 
@@ -119,3 +121,31 @@ export default class Month extends React.Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     reminders: state
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchAllReminders: payload => {
+//       console.log('came to fetchAllReminders!!!!!!!!', payload)
+//       axios.get('api/months/12', payload)
+//       .then(function (reminders) {
+//         dispatch(actions.createReminder(reminders));
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//       },
+//     updateReminder: payload => dispatch(actions.updateReminder(payload)),
+//     deleteReminder: (date, id) => dispatch(actions.deleteReminder(date, id))
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Month);

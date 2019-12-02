@@ -20,9 +20,9 @@ const paginate = (pageNum, pageSize) => {
 
 app.get('/api/months/:month?', (req, res, next) => {
   const requestedMonth = req.params.month;
-  Task.findAll({
-    taskMonth: requestedMonth
-  }).then(tasks => {
+  console.log('req.params are: ', req.params)
+  Task.findAll().then(tasks => {
+    console.log('tasks obtained are: ', tasks)
     res.send(tasks);
   })
 });

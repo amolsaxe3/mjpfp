@@ -130,7 +130,7 @@ const mapDispatchToProps = dispatch => {
       console.log('came to createReminder!!!!!!!!', payload)
       axios.post('api/createTask', payload)
       .then(function (response) {
-        dispatch(actions.createReminder(payload));
+        dispatch(actions.createReminder(response));
       })
       .catch(function (error) {
         console.log(error);
