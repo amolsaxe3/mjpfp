@@ -3,6 +3,9 @@ import HeaderMonth from "./HeaderMonth";
 import HeaderWeekDays from "./HeaderWeekDays";
 import Day from "./Day";
 import moment from "moment";
+import { connect } from "react-redux";
+import * as actions from "./store/actions";
+import axios from "axios";
 
 export default class Month extends React.Component {
   constructor(){
@@ -58,7 +61,7 @@ export default class Month extends React.Component {
         }
       },
       () => {
-        // console.warn(this.state);
+        // console.log(this.state);
       }
     );
   }

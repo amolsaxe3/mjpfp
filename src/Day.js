@@ -4,7 +4,7 @@ import * as actions from "./store/actions";
 import ReminderForm from "./ReminderForm";
 import Reminder from "./Reminder";
 import _sortBy from "lodash/sortBy";
-import axios from "axios"
+import axios from "axios";
 
 const defaultColor = "#000";
 

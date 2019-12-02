@@ -19,13 +19,12 @@ const paginate = (pageNum, pageSize) => {
 };
 
 app.get('/api/months/:month?', (req, res, next) => {
-  const resultsPerPage = 50;
-  // pageNum is zero indexed
-  let month = req.params.page;
-  if (month === undefined) {
-    var check = moment(moment(), 'YYYY/MM/DD');
-    month = check.format('M');
-  };
+  const requestedMonth = req.params.month;
+  Task.findAll({
+    taskMonth: requestedMonth
+  }).then(tasks => {
+    res.send(tasks);
+  })
 });
 
 app.post('/api/createTask', (req, res, next) => {
@@ -39,7 +38,7 @@ app.post('/api/createTask', (req, res, next) => {
     taskTime: taskUserSent.time,
     taskMonth: month,
     taskStatus: 'new'
-  })
+  }).then(res.send(200))
 });
 
 
