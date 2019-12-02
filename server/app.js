@@ -1,14 +1,40 @@
-const Sequelize = require('sequealize');
-
-const db = new Sequelize('postgres://localhost:5432/calendar');
-
-const express = require('express');
-
 const path = require('path');
-
+const express = require('express');
 const app = express();
-const PORT = 3000;
-app.use(express.static(path.join(__dirname, './static')))
-app.listen(PORT, () => console.log('Started, listening on PORT 3000');
+// Do not touch this file
+const { Task } = require('./db/index.js');
 
-module.exports = db;
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
+
+app.get('/', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
+
+const paginate = (pageNum, pageSize) => {
+  return { limit: pageSize, offset: pageNum * pageSize };
+};
+
+app.get('/api/months/:month?', (req, res, next) => {
+  const resultsPerPage = 50;
+  // pageNum is zero indexed
+  let month = req.params.page;
+  if (month === undefined) {
+    var check = moment(moment(), 'YYYY/MM/DD');
+    month = check.format('M');
+  };
+});
+
+  module.exports = { app };
+
+//   const { limit, offset } = paginate(pageNum, resultsPerPage);
+//   Employee.findAndCountAll({
+//     limit,
+//     offset,
+//     order: [
+//       ['firstName', 'asc'],
+//       ['lastName', 'asc'],
+//     ],
+//   }).then(results => {
+//     res.status(200).send(results);
+//   });

@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('yourfile.min.css');
 
 const config = {
   mode: 'development',
@@ -15,6 +17,9 @@ const config = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.txt$/, use: 'raw-loader' 
+      }
     ],
   },
   resolve: {
